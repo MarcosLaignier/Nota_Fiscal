@@ -1,0 +1,52 @@
+<div id="toolbar">
+  <p id="textTitlePage">{{titlePage}}</p>
+
+  <div id="buttonsToolBar">
+    <dx-button
+      stylingMode="outlined"
+      text="Salvar/Fechar"
+      type="button"
+      [width]="130"
+      (onClick)="clickSalvarFechar($event)"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Salvar"
+      type="submit"
+      [width]="100"
+      (onClick)="clickSalvar($event)"
+      [useSubmitBehavior]="true"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Excluir"
+      type="normal"
+      [width]="100"
+      (onClick)="clickDelete($event)"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Fechar"
+      type="normal"
+      [width]="100"
+      (onClick)="backPage()"
+
+    >
+    </dx-button>
+  </div>
+</div>
+
+<!--<dx-form>-->
+<!--  <dxi-item-->
+<!--    itemType="button"-->
+<!--    horizontalAlignment="left"-->
+<!--    [buttonOptions]="buttonOptions"-->
+<!--    -->
+<!--  >-->
+<!--  </dxi-item>-->
+<!--</dx-form>-->
+
+

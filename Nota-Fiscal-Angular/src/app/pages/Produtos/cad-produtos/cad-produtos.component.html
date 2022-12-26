@@ -1,0 +1,52 @@
+<div id="toolBar">
+  <app-toolbar-cad titlePage="Cadastro de Produtos" (salvarButton)="buttonSalvar()"
+                   (deleteButton)="deleteProduto()"
+  ></app-toolbar-cad>
+</div>
+
+<form action="" id="ttt" (submit)="onFormSubmit($event)">
+<dx-form id="form-container" [colCount]="2" [formData]="FormProduto"
+         labelLocation="left"
+>
+
+    <dxi-item
+      dataField="codigoProduto"
+      [label]="{text:'Codigo do Produto: '}"
+      [editorOptions]="{width:'50%',mask:'000.000.000'}"
+      required="true"
+      ngDefaultControl
+    >
+
+    </dxi-item>
+
+
+    <dxi-item
+      itemType="empty"
+    ></dxi-item>
+
+
+    <dxi-item
+      dataField="descricaoProduto"
+      [label]="{text:'Descricao do Produto: '}"
+    >
+      <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="customFirstNameValidationCallback">
+      </dxi-validation-rule>
+
+    </dxi-item>
+
+    <dxi-item
+      dataField="valorUnit"
+      [label]="{text:'Valor Unitario: '}"
+      [editorOptions]="{width:'50%'}"
+      ngDefaultControl
+    ></dxi-item>
+
+    <dxi-item
+itemType="button"
+      horizontalAlignment="left"
+      [buttonOptions]="buttonOptions"
+    >
+    </dxi-item>
+</dx-form>
+</form>
+<dx-toast [(visible)]="toastVisible" [type]="type" [message]="messageToast"></dx-toast>

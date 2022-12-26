@@ -1,0 +1,38 @@
+<div id="toolbar">
+  <p id="textTitlePage">{{titlePage}}</p>
+
+  <div id="buttonsToolBar">
+    <dx-button
+      stylingMode="outlined"
+      text="Filtrar"
+      type="normal"
+      [width]="100"
+      (onClick)="clickFilter($event)"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Novo"
+      type="normal"
+      [width]="100"
+      (onClick)="clickNovo($event)"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Limpar"
+      type="normal"
+      [width]="100"
+    >
+    </dx-button>
+    <dx-button
+      stylingMode="outlined"
+      text="Fechar"
+      type="normal"
+      [width]="100"
+      (onClick)="backPage()"
+
+    >
+    </dx-button>
+  </div>
+</div>

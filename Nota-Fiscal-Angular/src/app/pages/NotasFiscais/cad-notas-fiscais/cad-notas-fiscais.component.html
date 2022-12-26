@@ -1,0 +1,179 @@
+<div id="toolBar">
+  <app-toolbar-cad titlePage="Cadastro de Notas Fiscais" (salvarButton)="buttonSalvar()"
+                   (deleteButton)="deleteNota()"
+                   ></app-toolbar-cad>
+</div>
+
+
+<div id="toolBarInterna">
+  <dx-button
+    stylingMode="outlined"
+    text="Dados Gerais"
+    type="button"
+    [width]="150"
+    (onClick)="clickDadosGerais()"
+  ></dx-button>
+  <dx-button
+    stylingMode="outlined"
+    text="Produtos"
+    type="button"
+    [width]="150"
+    (onClick)="clickProdutos()"
+  ></dx-button>
+</div>
+
+<dx-form class="form-container" [colCount]="3" [formData]="FormCadNota"
+         labelLocation="left"
+         validationGroup="FormCadNotaData"
+         *ngIf="dadosGeraisVisible"
+>
+
+  <dxi-item
+    dataField="numeroNf"
+    [label]="{text:'Numero: '}"
+    [editorOptions]="{width:'50%'}"
+
+    ngDefaultControl
+  >
+    <dxi-validation-rule
+      type="stringLength"
+      [min]="2"
+      message="Name must have at least 2 symbols"
+    >
+    </dxi-validation-rule>
+
+  </dxi-item>
+  <dxi-item
+    dataField="serieNf"
+    [label]="{text:'Serie: '}"
+    [editorOptions]="{width:'20%'}"
+
+    ngDefaultControl
+  ></dxi-item>
+
+
+  <dxi-item
+    dataField="dataEmissao"
+    [label]="{text:'Data da Emissao: '}"
+    [editorOptions]="{width:'50%'}"
+    displayFormat="shortdate"
+
+    ngDefaultControl
+  ></dxi-item>
+
+  <dxi-item
+    dataField="cliente"
+    [label]="{text:'Cliente: '}"
+    editorType="dxSelectBox"
+    [editorOptions]="{width:'100%', items:listaClientes , displayExpr:'nomeCliente',
+    searchEnabled:'true'}"
+    ngDefaultControl
+    *ngIf="!idUrl"
+  ></dxi-item>
+
+  <dxi-item
+    dataField="cliente.nomeCliente"
+    [label]="{text:'Cliente: '}"
+    [editorOptions]="{width:'100%',readOnly:'true'}"
+    ngDefaultControl
+    *ngIf="idUrl"
+
+  ></dxi-item>
+
+
+  <dxi-item
+    dataField="cliente.cpf"
+    [label]="{text:'CPF: '}"
+    [editorOptions]="{width:'50%',readOnly:'true'}"
+    ngDefaultControl
+
+  ></dxi-item>
+
+  <dxi-item
+    itemType="empty"
+
+  ></dxi-item>
+
+
+  <dxi-item
+    itemType="empty"
+    colSpan="2"
+  ></dxi-item>
+
+
+  <dxi-item
+    dataField="valorTotal"
+    [label]="{text:'Valor Total: '}"
+    [editorOptions]="{width:'30%',style: 'currency', currency: 'BRL'}"
+    ngDefaultControl
+  ></dxi-item>
+
+
+</dx-form>
+
+
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="FormProdutosNF"
+  *ngIf="produtosVisible"
+
+
+>
+  <dxo-editing
+    mode="popup"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+  >
+    <dxo-popup
+      title="Selecao de Produtos"
+      [showTitle]="true"
+      [width]="700"
+      [height]="525"
+    >
+    </dxo-popup>
+    <dxo-form [formData]="FormProdutosNF">
+      <dxi-item dataField="produto"
+                [label]="{text:'Produto: '}"
+                editorType="dxSelectBox"
+                [editorOptions]="{width:'100%', items:listaProdutos, displayExpr:'descricaoProduto',searchEnabled:'true'}"
+                ngDefaultControl>
+      </dxi-item>
+
+      <dxi-item dataField="quantidade"
+                [label]="{text:'Quantidade: '}"
+                ngDefaultControl>
+      </dxi-item>
+
+
+    </dxo-form>
+  </dxo-editing>
+
+  <dxo-toolbar>
+    <dxi-item name="addRowButton" showText="always"></dxi-item>
+  </dxo-toolbar>
+
+  <dxi-column dataField="produto" caption="Produto" [visible]="false"
+  >
+  </dxi-column>
+
+  <dxi-column dataField="produto.codigoProduto" caption="Codigo do Produto">
+  </dxi-column>
+
+  <dxi-column dataField="produto.descricaoProduto" caption="Descricao do Produto" [width]="400">
+  </dxi-column>
+
+  <dxi-column dataField="produto.valorUnit" caption="Valor Unitario"
+              [format]="{ style: 'currency', currency: 'BRL'}">
+  </dxi-column>
+
+  <dxi-column dataField="quantidade" caption="Quantidade">
+  </dxi-column>
+
+<!--  <dxi-column  caption="Valor Total" [editorOptions]="{ value:'produto.valorUnit * quantidade'}">-->
+<!--  </dxi-column>-->
+
+</dx-data-grid>
+
+
+<dx-toast [(visible)]="toastVisible" [type]="type" [message]="messageToast"></dx-toast>

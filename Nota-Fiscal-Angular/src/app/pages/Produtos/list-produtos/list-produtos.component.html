@@ -1,0 +1,96 @@
+<div id="toolBar">
+  <app-toolbar-list titlePage="Filtro de Produtos" (filterButton)="filterProdutoCustom()"
+                    (novoButton)="goToCadastro()"></app-toolbar-list>
+</div>
+<div class="form">
+  <div class="dx-fieldset">
+    <div class="dx-fieldset-header">Filtros</div>
+    <div class="linha">
+      <div class="column-50">
+        <div class="dx-field">
+          <div class="dx-field-label">Codigo :</div>
+          <dx-text-box class="dx-field-value"
+              width="20%"
+                       [(value)]="codigoProduto"
+          ></dx-text-box>
+        </div>
+      </div>
+
+    </div>
+    <div class="linha">
+      <div class="column-50">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Descrição :</div>
+          <dx-text-box class="dx-field-value"
+                       [(value)]="descricaoProduto"
+
+          ></dx-text-box>
+        </div>
+      </div>
+      <div class="column-50">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Valor:</div>
+          <dx-text-box class="dx-field-value"
+                       width="30%"
+                       [(value)]="valorUnit"
+
+          ></dx-text-box>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dx-data-grid
+  #grid
+  [dataSource]="listaProdutos"
+  [rowAlternationEnabled]="true"
+  [selectedRowKeys]=[]
+  (onRowDblClick)="getSelectGrid(grid.instance.getSelectedRowsData()[0].id)"
+
+>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column
+    dataField="id"
+    caption="Id"
+    dataType="number"
+    width="100"
+    sortOrder="asc"
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="codigoProduto"
+    caption="Codigo do Produto"
+    dataType="text"
+    alignment="center"
+     [editorOptions]="{mask:'000.000.000'}"
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="descricaoProduto"
+    caption="Descricao"
+    dataType="text"
+    alignment="center">
+
+
+  </dxi-column>
+
+  <dxi-column
+    dataField="valorUnit"
+    caption="Valor Unitario"
+    [format]="{ style: 'currency', currency: 'BRL'}"
+
+    alignment="center"
+  >
+
+
+  </dxi-column>
+
+</dx-data-grid>
+
+

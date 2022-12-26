@@ -1,0 +1,14 @@
+#toolbar{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2em;
+}
+#buttonsToolBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 1em;
+}
+#textTitlePage{
+  font-size: 16px;
+}

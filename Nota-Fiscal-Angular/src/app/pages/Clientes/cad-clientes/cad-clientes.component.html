@@ -1,0 +1,39 @@
+<div id="toolBar">
+  <app-toolbar-cad titlePage="Cadastro de Clientes" (salvarButton)="buttonSalvar()"
+                   (deleteButton)="deleteCliente()"
+ ></app-toolbar-cad>
+</div>
+
+<dx-form id="form-container"
+         [colCount]="2"
+         [formData]="FormCliente"
+         labelLocation="left">
+
+
+        <dxi-item
+          dataField="id"
+          [label]="{text:'Codigo do Cliente: '}"
+          [editorOptions]="{ disabled: true ,width: '40%'}"
+          ngDefaultControl
+        >
+        </dxi-item>
+        <dxi-item
+          itemType="empty"
+        ></dxi-item>
+        <dxi-item
+          dataField="nomeCliente"
+          [label]="{text:'Nome do Cliente: '}"
+          ngDefaultControl
+        ></dxi-item>
+
+        <dxi-item
+          dataField="cpf"
+          [label]="{text:'CPF :'}"
+          [editorOptions]="{ mask: '000.000.000-00',width:'50%'}"
+          ngDefaultControl
+        ></dxi-item>
+
+      </dx-form>
+
+<dx-toast [(visible)]="toastVisible" [type]="type" [message]="messageToast"></dx-toast>
+

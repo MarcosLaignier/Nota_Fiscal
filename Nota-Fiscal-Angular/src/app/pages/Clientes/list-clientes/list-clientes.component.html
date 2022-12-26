@@ -1,0 +1,66 @@
+<div id="toolBar">
+  <app-toolbar-list titlePage="Filtro de Clientes" (filterButton)="listClientes()"
+                    (novoButton)="goToCadastro()"></app-toolbar-list>
+</div>
+<div class="form">
+  <div class="dx-fieldset">
+    <div class="dx-fieldset-header">Filtros</div>
+    <div class="linha">
+    <div class="column-50">
+
+      <div class="dx-field">
+        <div class="dx-field-label">Nome :</div>
+        <dx-text-box class="dx-field-value"
+
+        ></dx-text-box>
+      </div>
+    </div>
+    <div class="column-50">
+
+      <div class="dx-field">
+        <div class="dx-field-label">CPF:</div>
+        <dx-text-box class="dx-field-value"
+                     mask="000.000.000-00"
+                     width="30%"
+        ></dx-text-box>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<dx-data-grid
+  #grid
+  [dataSource]="listaClientes"
+  [rowAlternationEnabled]="true"
+  [selectedRowKeys]=[]
+  (onRowDblClick)="getSelectGrid(grid.instance.getSelectedRowsData()[0].id)"
+>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column
+    dataField="id"
+    caption="Codigo"
+    dataType="number"
+    width="100"
+    sortOrder="asc"
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="nomeCliente"
+    caption="Nome"
+    dataType="text"
+    width="800"
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="cpf"
+    caption="CPF"
+    dataType="text">
+
+  </dxi-column>
+
+</dx-data-grid>
+

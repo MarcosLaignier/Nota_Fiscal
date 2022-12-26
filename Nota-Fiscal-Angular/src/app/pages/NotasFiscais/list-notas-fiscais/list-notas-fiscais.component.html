@@ -1,0 +1,109 @@
+<div id="toolBar">
+  <app-toolbar-list titlePage="Filtro de Notas Fiscais" (filterButton)="listProdutos()"
+                    (novoButton)="goToCadastro()"></app-toolbar-list>
+</div>
+<div class="form">
+  <div class="dx-fieldset">
+    <div class="dx-fieldset-header">Filtros</div>
+    <div class="linha">
+      <div class="column-50">
+        <div class="dx-field">
+          <div class="dx-field-label">Numero :</div>
+          <dx-text-box class="dx-field-value"
+                       width="20%"
+          ></dx-text-box>
+        </div>
+      </div>
+
+      <div class="column-50">
+      <div class="dx-field">
+        <div class="dx-field-label">Serie :</div>
+        <dx-text-box class="dx-field-value"
+                     width="20%"
+        ></dx-text-box>
+      </div>
+    </div>
+    </div>
+    <div class="linha">
+      <div class="column-50">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Cliente :</div>
+          <dx-text-box class="dx-field-value"
+
+          ></dx-text-box>
+        </div>
+      </div>
+      <div class="column-50">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Valor:</div>
+          <dx-text-box class="dx-field-value"
+                       width="30%"
+          ></dx-text-box>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dx-data-grid
+  #grid
+  [dataSource]="listaNotas"
+  [rowAlternationEnabled]="true"
+  [selectedRowKeys]=[]
+  (onRowDblClick)="getSelectGrid(grid.instance.getSelectedRowsData()[0].id)"
+
+>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column
+    dataField="numeroNf"
+    caption="Numero"
+    dataType="number"
+    width="100"
+    sortOrder="asc"
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="serieNf"
+    caption="Serie"
+    dataType="text"
+    alignment="center"
+
+  >
+  </dxi-column>
+
+  <dxi-column
+    dataField="dataEmissao"
+    caption="Data Emissao"
+    dataType="date"
+    alignment="center">
+
+
+  </dxi-column>
+
+  <dxi-column
+    dataField="cliente.nomeCliente"
+    caption="Cliente"
+    dataType="text"
+    alignment="center"
+  >
+
+
+  </dxi-column>
+
+  <dxi-column
+    dataField="valorTotal"
+    caption="Valor"
+    dataType="number"
+    alignment="center"
+  >
+
+
+  </dxi-column>
+
+</dx-data-grid>
+
+
