@@ -23,6 +23,10 @@ export class ListNotasFiscaisComponent implements OnInit {
   }
 
   listaNotas:NotaFiscalModel[]=[]
+  numeroNf:string='';
+  serieNf: string='';
+  valorTotal:string='';
+  nomeCliente:string='';
 
   listProdutos() {
     return this.notaService.listNotas().subscribe(
@@ -33,6 +37,13 @@ export class ListNotasFiscaisComponent implements OnInit {
     )
   }
 
+  filterCustom(){
+    return this.notaService.filterCustom(this.numeroNf,this.serieNf,this.valorTotal,this.nomeCliente).subscribe(
+      response =>{
+        this.listaNotas=response
+      }
+    )
+  }
 
   getSelectGrid(select: any) {
     this.router.navigate([`/altnota/${select}`])

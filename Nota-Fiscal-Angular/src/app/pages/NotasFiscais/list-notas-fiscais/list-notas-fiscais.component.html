@@ -1,5 +1,5 @@
 <div id="toolBar">
-  <app-toolbar-list titlePage="Filtro de Notas Fiscais" (filterButton)="listProdutos()"
+  <app-toolbar-list titlePage="Filtro de Notas Fiscais" (filterButton)="filterCustom()"
                     (novoButton)="goToCadastro()"></app-toolbar-list>
 </div>
 <div class="form">
@@ -11,6 +11,7 @@
           <div class="dx-field-label">Numero :</div>
           <dx-text-box class="dx-field-value"
                        width="20%"
+                       [(value)]="numeroNf"
           ></dx-text-box>
         </div>
       </div>
@@ -20,6 +21,7 @@
         <div class="dx-field-label">Serie :</div>
         <dx-text-box class="dx-field-value"
                      width="20%"
+                     [(value)]="serieNf"
         ></dx-text-box>
       </div>
     </div>
@@ -30,7 +32,7 @@
         <div class="dx-field">
           <div class="dx-field-label">Cliente :</div>
           <dx-text-box class="dx-field-value"
-
+                       [(value)]="nomeCliente"
           ></dx-text-box>
         </div>
       </div>
@@ -40,6 +42,7 @@
           <div class="dx-field-label">Valor:</div>
           <dx-text-box class="dx-field-value"
                        width="30%"
+                       [(value)]="valorTotal"
           ></dx-text-box>
         </div>
       </div>

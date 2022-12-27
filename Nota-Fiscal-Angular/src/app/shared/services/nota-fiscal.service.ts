@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NotaFiscalModel} from "../Models/notaFiscalModel";
 import {ProdutosNfModel} from "../Models/produtosNfModel";
+import {ClienteModel} from "../Models/clienteModel";
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,23 @@ export class NotaFiscalService {
 
   alterNotaFiscal(idNota:Number, notaFiscal:NotaFiscalModel){
     return this.Httpclient.put(`${this.API}/alter/${idNota}`,notaFiscal,{observe:'response'})
+  }
+
+  filterCustom(numeroNf:String,serieNf:String,valorTotal:String,nomeCliente:String){
+    let subquery = '?'
+    if(numeroNf!=''){
+      subquery+=`&numeroNf=${numeroNf}`
+    }
+    if(serieNf!=''){
+      subquery+=`&serieNf=${serieNf}`
+    }
+    if(valorTotal!=''){
+      subquery+=`&valorTotal=${valorTotal}`
+    }
+    if(nomeCliente!=''){
+      subquery+=`&nomeCliente=${nomeCliente}`
+    }
+    return this.Httpclient.get<NotaFiscalModel[]>(`${this.API}/Filter${subquery}`)
   }
 
 
