@@ -12,6 +12,7 @@ public class clienteModel {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
+    @Column
     private String nomeCliente;
     @Column(unique = true,nullable = false)
     private String CPF;
