@@ -14,7 +14,8 @@ import {Router} from "@angular/router";
 export class ListClientesComponent implements OnInit {
 
   listaClientes: ClienteModel[] = []
-
+  nomeCliente:string=''
+  cpf:string=''
 
   constructor(private clienteService: ClienteService,
               private router: Router) {
@@ -28,6 +29,14 @@ export class ListClientesComponent implements OnInit {
       response => {
         this.listaClientes = response
         console.log(this.listaClientes)
+      }
+    )
+  }
+
+  filterClientes(){
+    return this.clienteService.filterCustom(this.nomeCliente,this.cpf).subscribe(
+      response =>{
+        this.listaClientes = response
       }
     )
   }

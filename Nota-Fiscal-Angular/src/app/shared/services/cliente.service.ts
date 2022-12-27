@@ -28,4 +28,15 @@ export class ClienteService {
   deleteClientes(idCliente:number){
     return this.httpClient.delete(`${this.API}/delete?idCliente=${idCliente}`,{observe:"response"});
   }
+
+  filterCustom(nomeCliente:String,cpf:String){
+    let subquery = '?'
+    if(nomeCliente!=''){
+      subquery+=`&nomeCliente=${nomeCliente}`
+    }
+    if(cpf!=''){
+      subquery+=`&CPF=${cpf}`
+    }
+    return this.httpClient.get<ClienteModel[]>(`${this.API}/Filter${subquery}`)
+  }
 }

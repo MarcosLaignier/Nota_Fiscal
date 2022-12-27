@@ -1,5 +1,5 @@
 <div id="toolBar">
-  <app-toolbar-list titlePage="Filtro de Clientes" (filterButton)="listClientes()"
+  <app-toolbar-list titlePage="Filtro de Clientes" (filterButton)="filterClientes()"
                     (novoButton)="goToCadastro()"></app-toolbar-list>
 </div>
 <div class="form">
@@ -11,7 +11,7 @@
       <div class="dx-field">
         <div class="dx-field-label">Nome :</div>
         <dx-text-box class="dx-field-value"
-
+            [(value)]="nomeCliente"
         ></dx-text-box>
       </div>
     </div>
@@ -22,6 +22,7 @@
         <dx-text-box class="dx-field-value"
                      mask="000.000.000-00"
                      width="30%"
+                     [(value)]="cpf"
         ></dx-text-box>
       </div>
     </div>
