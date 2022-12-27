@@ -2,8 +2,7 @@ package com.sonner.notaFiscal.Controller;
 
 import com.sonner.notaFiscal.Models.notaFiscalModel;
 import com.sonner.notaFiscal.Models.produtosNotaFiscal;
-import com.sonner.notaFiscal.Repository.notaFiscalRepository;
-import com.sonner.notaFiscal.Repository.produtosNotaFiscalRepository;
+import com.sonner.notaFiscal.Repository.notaFiscalRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +15,15 @@ import java.util.Optional;
 @RequestMapping("/servlet/notaFiscal")
 public class notaFiscalController {
 
-//    final notaFiscalRepository notaFiscalRepository;
-//    public notaFiscalController(notaFiscalRepository notaFiscalRepository) {
-//        this.notaFiscalRepository = notaFiscalRepository;
-//    }
+    final com.sonner.notaFiscal.Repository.notaFiscalRepository notaFiscalRepository;
+    final com.sonner.notaFiscal.Repository.produtosNotaFiscalRepository produtosNotaFiscalRepository;
 
-    final
-    com.sonner.notaFiscal.Repository.notaFiscalRepository notaFiscalRepository;
-    final
-    com.sonner.notaFiscal.Repository.produtosNotaFiscalRepository produtosNotaFiscalRepository;
+    final com.sonner.notaFiscal.Repository.notaFiscalRepositoryCustom notaFiscalRepositoryCustom;
 
-    public notaFiscalController(com.sonner.notaFiscal.Repository.notaFiscalRepository notaFiscalRepository, com.sonner.notaFiscal.Repository.produtosNotaFiscalRepository produtosNotaFiscalRepository) {
+    public notaFiscalController(com.sonner.notaFiscal.Repository.notaFiscalRepository notaFiscalRepository, com.sonner.notaFiscal.Repository.produtosNotaFiscalRepository produtosNotaFiscalRepository, notaFiscalRepositoryCustom notaFiscalRepositoryCustom) {
         this.notaFiscalRepository = notaFiscalRepository;
         this.produtosNotaFiscalRepository = produtosNotaFiscalRepository;
+        this.notaFiscalRepositoryCustom = notaFiscalRepositoryCustom;
     }
 
     @GetMapping("/list")
@@ -82,6 +77,16 @@ public class notaFiscalController {
                     return ResponseEntity.ok().build();
                 }
         ).orElse(ResponseEntity.notFound().build());
+    }
+
+
+    @GetMapping("/Filter")
+    public List<notaFiscalModel> filterCustom(@RequestParam (value = "numeroNf" , required = false) String numeroNf,
+                                              @RequestParam(value = "serieNf", required = false) String serieNf,
+                                              @RequestParam(value = "valorTotal", required = false)String valorTotal,
+                                              @RequestParam(value = "nomeCliente",required = false)String nomeCliente){
+        return this.notaFiscalRepositoryCustom.find(numeroNf,serieNf,valorTotal,nomeCliente);
+
     }
 
 
