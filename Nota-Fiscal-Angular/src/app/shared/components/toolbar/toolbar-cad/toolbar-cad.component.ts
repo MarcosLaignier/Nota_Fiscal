@@ -16,6 +16,7 @@ export class ToolbarCadComponent implements OnInit {
   @Output() deleteButton = new EventEmitter();
 
   @Input() titlePage:String='';
+  @Input() group:string=''
   constructor() {
   }
 
@@ -40,12 +41,16 @@ export class ToolbarCadComponent implements OnInit {
   }
 
   buttonOptions: any = {
-
-    text: 'Register',
-    type: 'success',
+    text: 'Salvar',
+    type: 'outline',
     useSubmitBehavior: true,
-    onClick:(e:ClickEvent) =>{
-this.salvarButton.emit(e)
+    validationGroup: `${this.group}`,
+    onClick: (e: ClickEvent) => {
+      if (e.validationGroup.validate().isValid) {
+        console.log(this.group)
+        console.log(e.validationGroup.validate())
+        this.salvarButton.emit(e)
+      }
     }
   };
 
