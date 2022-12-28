@@ -1,6 +1,7 @@
 <div id="toolBar">
   <app-toolbar-cad titlePage="Cadastro de Notas Fiscais" (salvarButton)="buttonSalvar()"
                    (deleteButton)="deleteNota()"
+                   (salvarFecharButton)="calculaValorTotal()"
                    ></app-toolbar-cad>
 </div>
 
@@ -104,7 +105,7 @@
   <dxi-item
     dataField="valorTotal"
     [label]="{text:'Valor Total: '}"
-    [editorOptions]="{width:'30%',style: 'currency', currency: 'BRL'}"
+    [editorOptions]="{width:'30%',style: 'currency', currency: 'BRL',value:valorTotalNota , readOnly:'true'}"
     ngDefaultControl
   ></dxi-item>
 
@@ -116,6 +117,7 @@
   id="gridContainer"
   [dataSource]="FormProdutosNF"
   *ngIf="produtosVisible"
+  (dataSourceChange)="calculaValorTotal()"
 
 
 >
@@ -132,12 +134,13 @@
       [height]="525"
     >
     </dxo-popup>
-    <dxo-form [formData]="FormProdutosNF">
+    <dxo-form [formData]="FormProdutosNF" >
       <dxi-item dataField="produto"
                 [label]="{text:'Produto: '}"
                 editorType="dxSelectBox"
                 [editorOptions]="{width:'100%', items:listaProdutos, displayExpr:'descricaoProduto',searchEnabled:'true'}"
                 ngDefaultControl>
+
       </dxi-item>
 
       <dxi-item dataField="quantidade"
@@ -164,13 +167,15 @@
   </dxi-column>
 
   <dxi-column dataField="produto.valorUnit" caption="Valor Unitario"
-              [format]="{ style: 'currency', currency: 'BRL'}">
+              [format]="{ style: 'currency', currency: 'BRL'}"
+>
   </dxi-column>
 
   <dxi-column dataField="quantidade" caption="Quantidade">
   </dxi-column>
 
-<!--  <dxi-column  caption="Valor Total" [editorOptions]="{ value:'produto.valorUnit * quantidade'}">-->
+<!--  <dxi-column  caption="Valor Total"      [calculateCellValue]="teste"-->
+<!--  >-->
 <!--  </dxi-column>-->
 
 </dx-data-grid>

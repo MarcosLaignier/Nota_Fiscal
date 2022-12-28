@@ -4,4 +4,6 @@ export class ProdutoModel {
   descricaoProduto!: String
   valorUnit!: number
 
+
+
 }

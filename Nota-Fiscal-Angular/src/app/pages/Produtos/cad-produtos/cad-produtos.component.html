@@ -1,12 +1,15 @@
 <div id="toolBar">
   <app-toolbar-cad titlePage="Cadastro de Produtos" (salvarButton)="buttonSalvar()"
                    (deleteButton)="deleteProduto()"
+                   group="cadProduto"
   ></app-toolbar-cad>
 </div>
 
 <form action="" id="ttt" (submit)="onFormSubmit($event)">
 <dx-form id="form-container" [colCount]="2" [formData]="FormProduto"
          labelLocation="left"
+         validationGroup="cadProduto"
+
 >
 
     <dxi-item

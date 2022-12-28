@@ -4,7 +4,7 @@ import {NotaFiscalModel} from "./notaFiscalModel";
 export class ProdutosNfModel {
 
   id!: number;
-  produto!: ProdutoModel[];
+  produto!: ProdutoModel;
   notaFiscal!: NotaFiscalModel;
   quantidade!: number;
 

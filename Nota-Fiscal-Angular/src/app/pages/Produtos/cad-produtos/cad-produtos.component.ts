@@ -40,7 +40,8 @@ export class CadProdutosComponent implements OnInit {
     id: 0,
     codigoProduto: null,
     descricaoProduto: '',
-    valorUnit: 0
+    valorUnit: 0,
+
   }
 
   insertProduto() {
